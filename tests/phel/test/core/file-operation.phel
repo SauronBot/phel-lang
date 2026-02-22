@@ -4,7 +4,9 @@
 (deftest test-slurp
   (is (string? (slurp php/__FILE__)) "reads current file successfully")
   (is (thrown? \InvalidArgumentException
-               (slurp "/non/existent/file.txt")) "reading non-existent file throws exception"))
+               (slurp "/non/existent/file.txt")) "reading non-existent file throws exception")
+  (is (thrown? \InvalidArgumentException
+               (slurp (php/sys_get_temp_dir))) "reading a directory throws exception"))
 
 (deftest test-slurp-backwards-compatibility
   # Ensure slurp still works with regular files (backwards compatibility)

@@ -27,6 +27,9 @@ All notable changes to this project will be documented in this file.
 - Fix `zipmap` causing out-of-memory error when used with infinite lazy sequences (e.g. `(zipmap keys (repeat val))`)
 - Fix `peek` crashing when used on lazy sequences (e.g. from `filter` or `map`)
 - Fix excessive blank lines in test output between test dots and summary
+- Fix `(is (not (pred val)))` asserting `(pred val)` instead of its negation (double-negation bug in test framework)
+- Fix `blank?` treating every character as whitespace due to `preg_match` returning integer `0` which `isTruthy` considers truthy
+- Fix `slurp` url detection: `preg_match` returning `0` (not a URL) was treated as truthy, causing file validation (directory check, file-not-found check) to always be skipped
 
 ## [0.29.0](https://github.com/phel-lang/phel-lang/compare/v0.28.0...v0.29.0) - 2026-02-01
 

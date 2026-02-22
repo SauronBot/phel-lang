@@ -2744,7 +2744,7 @@ returns 1. If `xs` has one value, returns the reciprocal of x."
   "Reads entire file or URL into a string."
   {:example "(slurp \"file.txt\") ; => \"file contents\""}
   [path & [opts]]
-  (let [is-url? (php/preg_match "/^(https?|ftp):\/\//i" path)]
+  (let [is-url? (not= 0 (php/preg_match "/^(https?|ftp):\/\//i" path))]
     # Validate for non-URLs
     (when-not is-url?
       # Check if path is a directory
